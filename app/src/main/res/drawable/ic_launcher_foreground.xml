@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- искорки -->
+    <path
+        android:fillColor="#E6FFFFFF"
+        android:pathData="M78,26 Q78,30 82,30 Q78,30 78,34 Q78,30 74,30 Q78,30 78,26 Z" />
+    <path
+        android:fillColor="#B3FFFFFF"
+        android:pathData="M24,43.4 Q24,46 26.6,46 Q24,46 24,48.6 Q24,46 21.4,46 Q24,46 24,43.4 Z" />
+
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.92"
+        android:scaleY="0.92">
+        <group android:translateY="10">
+            <!-- толщина книги (тень под страницами) -->
+            <group android:translateY="3">
+                <path
+                    android:fillColor="#2A0F5E"
+                    android:pathData="M52.5,72 C46,68 38,66 30,67 L30,41 C38,40 46,42 52.5,47 Z" />
+                <path
+                    android:fillColor="#2A0F5E"
+                    android:pathData="M55.5,72 C62,68 70,66 78,67 L78,41 C70,40 62,42 55.5,47 Z" />
+            </group>
+            <!-- страницы -->
+            <path
+                android:fillColor="#FFFFFF"
+                android:pathData="M52.5,72 C46,68 38,66 30,67 L30,41 C38,40 46,42 52.5,47 Z" />
+            <path
+                android:fillColor="#FFFFFF"
+                android:pathData="M55.5,72 C62,68 70,66 78,67 L78,41 C70,40 62,42 55.5,47 Z" />
+            <!-- строчки текста -->
+            <path android:fillColor="#00000000" android:strokeColor="#CFC2F5" android:strokeWidth="1.4" android:strokeLineCap="round"
+                android:pathData="M34,50 L49,54 M34,55 L49,59 M34,60 L49,64" />
+            <path android:fillColor="#00000000" android:strokeColor="#CFC2F5" android:strokeWidth="1.4" android:strokeLineCap="round"
+                android:pathData="M74,50 L59,54 M74,55 L59,59 M74,60 L59,64" />
+            <!-- звуковые столбики, «вырастающие» из книги -->
+            <path android:fillColor="#00000000" android:strokeColor="#FF5C8A" android:strokeWidth="4" android:strokeLineCap="round"
+                android:pathData="M42,42 L42,32" />
+            <path android:fillColor="#00000000" android:strokeColor="#FF5C8A" android:strokeWidth="4" android:strokeLineCap="round"
+                android:pathData="M66,42 L66,32" />
+            <path android:fillColor="#00000000" android:strokeColor="#FF9A5C" android:strokeWidth="4" android:strokeLineCap="round"
+                android:pathData="M48,42 L48,24" />
+            <path android:fillColor="#00000000" android:strokeColor="#FF9A5C" android:strokeWidth="4" android:strokeLineCap="round"
+                android:pathData="M60,42 L60,24" />
+            <path android:fillColor="#00000000" android:strokeColor="#FFD54F" android:strokeWidth="4" android:strokeLineCap="round"
+                android:pathData="M54,42 L54,16" />
+        </group>
+    </group>
+</vector>
