@@ -1,0 +1,50 @@
+name: Build APK
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack project (first run only)
+        run: |
+          if [ -f BookVoice.zip ]; then
+            unzip -q -o BookVoice.zip
+            cp -r BookVoice/. .
+            rm -rf BookVoice BookVoice.zip
+            printf 'build/\n.gradle/\n*.aar\n.idea/\nlocal.properties\n' > .gitignore
+            git config user.name "github-actions"
+            git config user.email "actions@github.com"
+            git add -A
+            git commit -m "Unpack project"
+            git push
+          fi
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.9
+      - name: Download sherpa-onnx AAR
+        run: |
+          mkdir -p app/libs
+          for v in 1.10.35 1.10.42 1.10.41 1.10.34; do
+            if curl -fL -o app/libs/sherpa-onnx.aar "https://huggingface.co/csukuangfj/sherpa-onnx-libs/resolve/main/android/aar/sherpa-onnx-$v.aar"; then
+              echo "Downloaded $v"; break
+            fi
+          done
+          ls -la app/libs
+          test -s app/libs/sherpa-onnx.aar
+      - run: gradle assembleDebug --no-daemon
+      - name: Publish APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest-apk -y --cleanup-tag || true
+          gh release create latest-apk app/build/outputs/apk/debug/app-debug.apk --title "BookVoice (debug)" --notes "Последняя сборка" --prerelease
